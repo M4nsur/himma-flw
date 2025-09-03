@@ -8,7 +8,7 @@ export const AllTasks = () => {
 
   console.log(data, "ss");
   return (
-    <div>
+    <div className="bg-amber-300">
       <h2>Todos</h2>
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <ul>
