@@ -1,4 +1,4 @@
-import { Trpc } from "@/lib/trpc";
+import { Trpc } from "@/app/providers/trpc";
 
 export const AllTasks = () => {
   const { data, isLoading, error } = Trpc.getTodos.useQuery();

@@ -1,5 +1,5 @@
-import { TrpcProvider } from "@/lib/trpc";
-import { AllTasks } from "@/pages/AllTasks";
+import { TrpcProvider } from "@/app/providers/trpc";
+import { AllTasks } from "@/pages/AllTasks/ui/AllTasksPage";
 
 function App() {
   return (
