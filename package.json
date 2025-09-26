@@ -1,5 +1,9 @@
 {
   "name": "himma-flw",
   "private": true,
-  "version": "0.0.0"
+  "version": "0.0.0",
+  "scripts": {
+    "web": "pnpm --filter @himma-flw/web dev",
+    "api": "pnpm --filter @himma-flw/backend dev"
+  }
 }
