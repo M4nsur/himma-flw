@@ -1,14 +1,11 @@
 import { TrpcProvider } from "@/app/providers/trpc";
-import { AllTasks } from "@/pages/AllTasks/ui/AllTasksPage";
-import "@mantine/core/styles.css";
-import { MantineProvider } from "@mantine/core";
+import { AppRouter } from "@/app/routes/";
+
 function App() {
   return (
-    <MantineProvider>
-      <TrpcProvider>
-        <AllTasks />;
-      </TrpcProvider>
-    </MantineProvider>
+    <TrpcProvider>
+      <AppRouter />
+    </TrpcProvider>
   );
 }
 
