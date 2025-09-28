@@ -1,1 +1,1 @@
-export { CommunitiesPage } from "./ui/CommunitiesPage";
+export { CommunitiesPage as default } from "./ui/CommunitiesPage";

@@ -1,1 +1,1 @@
-export { PomodoroPage } from "./ui/PomodoroPage";
+export { PomodoroPage as default } from "./ui/PomodoroPage";

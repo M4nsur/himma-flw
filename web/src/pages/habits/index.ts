@@ -1,1 +1,1 @@
-export { HabitsPage } from "./ui/HabitsPage";
+export { HabitsPage as default } from "./ui/HabitsPage";

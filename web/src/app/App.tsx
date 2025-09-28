@@ -1,11 +1,11 @@
 import { TrpcProvider } from "@/app/providers/trpc";
-import { AllTasks } from "@/pages/";
+import { AppRouter } from "@/app/routes/";
 
 function App() {
   return (
-      <TrpcProvider>
-        <AllTasks />;
-      </TrpcProvider>
+    <TrpcProvider>
+      <AppRouter />
+    </TrpcProvider>
   );
 }
 
