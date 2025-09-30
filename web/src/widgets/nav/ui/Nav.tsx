@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { ROUTES } from "@/shared/routes/routes";
+import { ROUTES } from "@/shared/routes";
 export const Nav = () => {
   return (
     <div className="flex flex-col gap-2 px-4">
