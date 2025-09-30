@@ -1,0 +1,8 @@
+{
+  "name": "@repo/schemas",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "peerDependencies": {
+    "zod": "^3.0.0"
+  }
+}
