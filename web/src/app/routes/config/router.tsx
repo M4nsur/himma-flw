@@ -1,4 +1,4 @@
-import { ROUTES } from "@/shared/routes/routes";
+import { ROUTES } from "@/shared/routes";
 import { createBrowserRouter } from "react-router";
 
 import { lazy } from "react";
