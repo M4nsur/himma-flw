@@ -1,38 +1,42 @@
-/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class", // включаем поддержку тем через класс .dark
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        dark: {
-          bg: "#0f172a",
-          card: "#1e293b",
-          border: "#334155",
-          text: "#e2e8f0",
-          subtext: "#94a3b8",
-          accent: "#3b82f6",
-          accent2: "#8b5cf6",
-          heatmap: "#a78bfa",
-          success: "#22c55e",
-          warning: "#f59e0b",
-          danger: "#ef4444",
+        background: {
+          DEFAULT: "#121212",
+          panel: "#1E1E1E",
+          border: "#2C2C2C",
         },
-
-        light: {
-          bg: "#ffffff",
-          card: "#f9fafb",
-          border: "#e5e7eb",
-          text: "#1e293b",
-          subtext: "#6b7280",
-          accent: "#2563eb",
-          accent2: "#7c3aed",
-          heatmap: "#a78bfa",
-          success: "#16a34a",
-          warning: "#f59e0b",
-          danger: "#dc2626",
+        text: {
+          primary: "#E0E0E0",
+          secondary: "#A0A0A0",
+          error: "#FF5C5C",
+        },
+        accent: {
+          DEFAULT: "#50728A",
+          hover: "#5F8EA8",
+          light: "#8DB6CC",
+          contributionFill: "#395768",
         },
       },
+      fontFamily: {
+        sans: ["Inter", "Arial", "sans-serif"],
+        mono: ["JetBrains Mono", "Roboto Mono", "monospace"],
+      },
+      borderRadius: {
+        DEFAULT: "8px",
+      },
+      boxShadow: {
+        soft: "0 2px 8px rgba(0, 0, 0, 0.5)",
+      },
+    },
+  },
+  variants: {
+    extend: {
+      backgroundColor: ["dark", "hover", "focus"],
+      textColor: ["dark", "hover", "focus"],
+      boxShadow: ["dark", "hover", "focus"],
     },
   },
   plugins: [],
