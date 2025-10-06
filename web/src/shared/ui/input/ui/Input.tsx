@@ -1,21 +1,34 @@
-import type { InputHTMLAttributes } from "react";
 import { useFormContext } from "react-hook-form";
-import type { FieldValues, Path } from "react-hook-form";
 
-interface InputProps<T extends FieldValues>
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "name"> {
-  name: Path<T>;
-  label?: string;
+interface FormFieldProps {
+  name: string;
+  label: string;
+  type?: string;
+  placeholder?: string;
 }
 
-export const Input = <T extends FieldValues>({
+export const FormField = ({
   name,
   label,
-  ...props
-}: InputProps<T>) => {
+  type = "text",
+  placeholder,
+}: FormFieldProps) => {
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
+  const error = errors[name];
+
   return (
-    <input {...props}>
-      {name} {label}
-    </input>
+    <div>
+      <label htmlFor={name}>{label}</label>
+      <input
+        id={name}
+        type={type}
+        placeholder={placeholder}
+        {...register(name)}
+      />
+      {error && <span className="error">{error.message as string}</span>}
+    </div>
   );
 };
