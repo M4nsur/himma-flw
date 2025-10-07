@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "scripts": {
     "web": "pnpm --filter @himma-flw/web dev",
-    "api": "pnpm --filter @himma-flw/backend dev"
+    "api": "pnpm --filter @himma-flw/backend dev",
+    "dev": "pnpm --parallel --filter @himma-flw/web --filter @himma-flw/backend dev"
   },
   "dependencies": {
     "zod": "^4.1.11"
