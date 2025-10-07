@@ -1,10 +1,10 @@
-import { Nav } from "@/widgets/nav";
+import { Header } from "@/widgets/header/index";
 import { Outlet } from "react-router";
 
 export const Layout = () => {
   return (
     <div>
-      <Nav />
+      <Header />
       <Outlet />
     </div>
   );

@@ -8,7 +8,7 @@ export const TasksPage = () => {
 
   console.log(data, "ss");
   return (
-    <div className="bg-amber-300">
+    <div className="bg-bg-panel">
       <h2>Todos</h2>
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <ul>
