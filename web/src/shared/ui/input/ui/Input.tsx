@@ -1,34 +1,48 @@
-import { useFormContext } from "react-hook-form";
+import type {
+  UseFormRegister,
+  FieldValues,
+  Path,
+  FieldError,
+} from "react-hook-form";
 
-interface FormFieldProps {
-  name: string;
-  label: string;
-  type?: string;
-  placeholder?: string;
+interface InputProps<T extends FieldValues>
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  register: UseFormRegister<T>;
+  name: Path<T>;
+  label?: string;
+  error?: FieldError;
 }
 
-export const FormField = ({
+export function Input<T extends FieldValues>({
+  register,
   name,
   label,
-  type = "text",
-  placeholder,
-}: FormFieldProps) => {
-  const {
-    register,
-    formState: { errors },
-  } = useFormContext();
-  const error = errors[name];
-
+  error,
+  className = "",
+  ...rest
+}: InputProps<T>) {
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
+    <div className="flex flex-col space-y-1">
+      {label && (
+        <label htmlFor={name} className="font-medium text-sm">
+          {label}
+        </label>
+      )}
+
       <input
         id={name}
-        type={type}
-        placeholder={placeholder}
         {...register(name)}
+        {...rest}
+        className={`border rounded-lg px-3 py-2 outline-none transition-colors
+          ${error ? "text-text-error" : "border-gray-300 focus:accent-hover"}
+          ${className}`}
       />
-      {error && <span className="error">{error.message as string}</span>}
+
+      {error && (
+        <p id={`${name}-error`} className="text-text-error text-xs">
+          {error.message}
+        </p>
+      )}
     </div>
   );
-};
+}
