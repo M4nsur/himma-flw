@@ -1,5 +1,6 @@
 import { Trpc } from "@/shared/lib/trpc";
-
+import { Button } from "@/shared/ui/button";
+import { PageHeader } from "@/shared/ui/page-header";
 export const TasksPage = () => {
   const { data, isLoading, error } = Trpc.getTodos.useQuery();
 
@@ -9,7 +10,15 @@ export const TasksPage = () => {
   console.log(data, "ss");
   return (
     <div className="bg-bg-panel">
-      <h2>Todos</h2>
+      <PageHeader
+        title="Tasks"
+        action={
+          <Button className="" onClick={() => console.log("hello")}>
+            Add task
+          </Button>
+        }
+      ></PageHeader>
+
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <ul>
         {data?.map((t: { id: number; title: string }) => (
