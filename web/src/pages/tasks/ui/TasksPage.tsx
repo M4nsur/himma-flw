@@ -1,7 +1,6 @@
-import { Trpc } from "@/shared/lib/trpc";
-import { Button } from "@/shared/ui/button";
+import { Trpc } from "@/shared/lib/";
 import { PageHeader } from "@/shared/ui/page-header";
-import { AddModalButton } from "@/features/add-task";
+import { AddTaskAction } from "@/features/add-task";
 export const TasksPage = () => {
   const { data, isLoading, error } = Trpc.getTodos.useQuery();
 
@@ -11,7 +10,7 @@ export const TasksPage = () => {
   console.log(data, "ss");
   return (
     <div className="bg-bg-panel">
-      <PageHeader title="Tasks" action={<AddModalButton />}></PageHeader>
+      <PageHeader title="Tasks" action={<AddTaskAction />}></PageHeader>
 
       <pre>{JSON.stringify(data, null, 2)}</pre>
       <ul>
