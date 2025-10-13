@@ -1,12 +1,11 @@
-"use client";
-
-import { useState } from "react";
-import { Button } from "@/shared/ui/button";
 import { BaseModal } from "@/shared/ui/modal";
+import { AddTaskModalForm } from "./AddTaskModalForm";
+import { useState } from "react";
 
-export const AddModalButton = () => {
+import { Button } from "@/shared/ui/button";
+
+export const AddTaskAction  = () => {
   const [open, setOpen] = useState(false);
-
   return (
     <>
       <Button
@@ -16,9 +15,8 @@ export const AddModalButton = () => {
       >
         Add task
       </Button>
-
       <BaseModal open={open} onOpenChange={setOpen} title="Add New Task">
-        this work
+        <AddTaskModalForm />
       </BaseModal>
     </>
   );

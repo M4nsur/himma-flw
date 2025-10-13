@@ -1,5 +1,5 @@
 import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient, Trpc, trpcClient } from "@/shared/lib/trpc";
+import { queryClient, Trpc, trpcClient } from "@/shared/lib/trpc/trpc";
 
 export const TrpcProvider = ({ children }: { children: React.ReactNode }) => {
   return (
