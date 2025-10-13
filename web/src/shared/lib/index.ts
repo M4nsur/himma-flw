@@ -1,2 +1,2 @@
 export { cn } from "./classnames/сn";
-export { trpcClient, Trpc } from "./trpc/trpc";
+export { trpcClient, Trpc, queryClient } from "./trpc/trpc";
