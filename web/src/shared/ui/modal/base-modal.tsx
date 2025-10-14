@@ -23,15 +23,14 @@ export const BaseModal = ({
       />
 
       <div className="z-50 fixed inset-0 flex justify-center items-center p-4">
-        <div className="relative bg-card shadow-2xl border border-border rounded-lg w-full max-w-md">
-          {/* Header */}
-          <div className="flex justify-between items-center p-4 border-b border-border">
+        <div className="relative bg-bg-tertiary bg-card shadow-2xl rounded-lg w-full max-w-md">
+          <div className="flex justify-between items-center p-4">
             <h2 className="font-semibold text-foreground text-lg">{title}</h2>
             <button
               onClick={() => onOpenChange(false)}
-              className="hover:bg-accent/20 p-1 rounded transition-colors"
+              className="bg-inherit hover:bg-bg-secondary p-1 transition-colors"
             >
-              <X className="w-5 h-5 text-card-foreground" />
+              <X />
             </button>
           </div>
 

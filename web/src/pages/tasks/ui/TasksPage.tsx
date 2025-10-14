@@ -9,7 +9,7 @@ export const TasksPage = () => {
 
   console.log(data, "ss");
   return (
-    <div className="bg-bg-panel">
+    <div>
       <PageHeader title="Tasks" action={<AddTaskAction />}></PageHeader>
 
       <pre>{JSON.stringify(data, null, 2)}</pre>
