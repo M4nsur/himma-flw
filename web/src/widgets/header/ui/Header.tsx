@@ -13,7 +13,7 @@ export const Header = () => {
   ];
 
   return (
-    <header className="bg-bg-primary">
+    <header className="top-0 z-50 sticky bg-bg-primary">
       <nav className="mx-auto py-4">
         <ul className="flex justify-center gap-8">
           {links.map(({ to, label, end }) => (
