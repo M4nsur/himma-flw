@@ -9,73 +9,95 @@ import {
 } from "./dropdown-menu";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/";
-import { ChevronDown, Omega } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Controller } from "react-hook-form";
+import type { Control, FieldValues, Path } from "react-hook-form";
 
 interface DropdownRadioOption {
   label: string;
   value: string;
 }
 
-interface DropdownRadioProps {
+interface BaseProps {
   options: DropdownRadioOption[];
-  value?: string;
-  onChange?: (value: string) => void;
   className?: string;
 }
 
-export function DropdownRadio({
+interface DropdownRadioRHFProps<TFieldValues extends FieldValues>
+  extends BaseProps {
+  name: Path<TFieldValues>;
+  control: Control<TFieldValues>;
+  defaultValue?: string;
+}
+
+export function DropdownRadio<T extends FieldValues>({
+  name,
+  control,
   options,
-  value,
-  onChange,
   className,
-}: DropdownRadioProps) {
-  const selected = options.find((o) => o.value === value) ?? options[0];
+
+  defaultValue,
+}: DropdownRadioRHFProps<T>) {
+  const hasOptions = options?.length > 0;
+  const initial = defaultValue ?? (hasOptions ? options[0].value : "");
 
   return (
-    <Controller name="radio-f">
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            className={cn(
-              "flex justify-between items-center bg-bg-secondary hover:bg-accent/10 border border-border text-foreground transition-colors",
-              "rounded-md px-3 py-2 text-sm font-medium shadow-[var(--shadow-soft)]",
-              className
-            )}
-          >
-            {selected.label}
-            <ChevronDown className="ml-2 size-4 text-muted-foreground" />
-          </Button>
-        </DropdownMenuTrigger>
+    <Controller
+      name={name}
+      control={control}
+      render={({ field }) => {
+        const selected =
+          options.find((o) => o.value === field.value) ??
+          options.find((o) => o.value === initial);
 
-        <DropdownMenuContent
-          align="start"
-          className={cn(
-            "z-50 bg-card shadow-2xl backdrop-blur-md mt-1 border border-border rounded-md min-w-[10rem] text-card-foreground",
-            "data-[state=open]:animate-in data-[state=closed]:animate-out"
-          )}
-        >
-          <DropdownMenuRadioGroup
-            value={selected.value}
-            onValueChange={(v) => onChange?.(v)}
-          >
-            {options.map((opt) => (
-              <DropdownMenuRadioItem
-                key={opt.value}
-                value={opt.value}
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
                 className={cn(
-                  "px-3 py-2 rounded-sm text-sm transition-colors cursor-pointer select-none",
-                  "hover:bg-accent/20 focus:bg-accent/30 focus:text-accent-foreground",
-                  "data-[state=checked]:text-accent-foreground data-[state=checked]:bg-accent/30"
+                  // структура
+                  "flex justify-between items-center w-full rounded-md px-3 py-2",
+                  // визуал
+                  "bg-bg-secondary hover:bg-accent/10 border border-border text-inherit font-medium transition-colors shadow-[var(--shadow-soft)]",
+                  className
                 )}
+                disabled={!hasOptions}
               >
-                {opt.label}
-              </DropdownMenuRadioItem>
-            ))}
-          </DropdownMenuRadioGroup>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </Controller>
+                {selected?.label}
+                <ChevronDown className="ml-2 w-4 h-4 text-muted-foreground shrink-0" />
+              </Button>
+            </DropdownMenuTrigger>
+
+            <DropdownMenuContent
+              align="start"
+              className={cn(
+                "z-50 bg-card shadow-2xl backdrop-blur-md mt-1 border border-border rounded-md min-w-[10rem] text-inherit",
+                "data-[state=open]:animate-in data-[state=closed]:animate-out"
+              )}
+            >
+              <DropdownMenuRadioGroup
+                value={selected?.value ?? ""}
+                onValueChange={field.onChange}
+              >
+                {options.map((opt) => (
+                  <DropdownMenuRadioItem
+                    key={opt.value}
+                    value={opt.value}
+                    className={cn(
+                      "px-3 py-2 rounded-sm text-inherit transition-colors cursor-pointer select-none",
+                      "hover:bg-accent/20 focus:bg-accent/30 focus:text-accent-foreground",
+                      "data-[state=checked]:text-accent-foreground data-[state=checked]:bg-accent/30"
+                    )}
+                  >
+                    {opt.label}
+                  </DropdownMenuRadioItem>
+                ))}
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        );
+      }}
+    />
   );
 }
