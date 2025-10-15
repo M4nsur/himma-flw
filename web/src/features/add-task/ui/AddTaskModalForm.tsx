@@ -1,32 +1,23 @@
 import { FormField } from "@/shared/ui/form-field";
 import { Input } from "@/shared/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { addTaskSchema, type AddTaskFormValues } from "../model/schema";
-import { Controller, useForm, type SubmitHandler } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { DropdownRadio } from "@/shared/ui/dropdown/dropdown-radio";
 import { PRIORITY_OPTIONS } from "@/entities/tasks";
 import { Textarea } from "@/shared/ui/textarea";
 import { DataPicker } from "@/shared/ui/data-picker";
 import { Button } from "@/shared/ui/button";
-export const AddTaskModalForm = () => {
+import { useAddTaskForm } from "../model/useAddTaskForm";
+export const AddTaskModalForm = ({ onSuccess }: { onSuccess?: () => void }) => {
+  const { form, onSubmit } = useAddTaskForm(onSuccess);
+
   const {
     register,
-    handleSubmit,
     control,
     formState: { errors },
-  } = useForm<AddTaskFormValues>({
-    resolver: zodResolver(addTaskSchema),
-    defaultValues: {
-      category: "None",
-      priority: "medium",
-    },
-  });
-
-  const onSubmit: SubmitHandler<AddTaskFormValues> = (data) =>
-    console.log(data);
+  } = form;
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={onSubmit}
       className="flex flex-col justify-center gap-4 text-[16px]"
     >
       <FormField label="Task title" error={errors.title?.message}>

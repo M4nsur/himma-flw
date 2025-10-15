@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { Button } from "@/shared/ui/button";
 
-export const AddTaskAction  = () => {
+export const AddTaskAction = () => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -16,7 +16,7 @@ export const AddTaskAction  = () => {
         Add task
       </Button>
       <BaseModal open={open} onOpenChange={setOpen} title="Add New Task">
-        <AddTaskModalForm />
+        <AddTaskModalForm onSuccess={()=> setOpen(false)} />
       </BaseModal>
     </>
   );
