@@ -11,7 +11,7 @@
   /* остальные цвета */
   --color-bg-primary: #1e1e1e;
   --color-bg-secondary: #121212;
-  --color-bg-tertiary: #1E2128FF;
+  --color-bg-tertiary: #1e2128ff;
 
   --color-text-primary: #ffffff;
   --color-text-secondary: #50728a;
@@ -75,7 +75,7 @@ html.dark {
   }
 
   button {
-    @apply bg-accent rounded-md text-accent-foreground cursor-pointer;
+    @apply rounded-md text-accent-foreground cursor-pointer;
   }
 
   a {

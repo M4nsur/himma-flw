@@ -7,6 +7,7 @@ export const tasks = [
     priority: "urgent",
     dueDate: "2025-09-01",
     pomodoros: 2,
+    category: "Personal",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export const tasks = [
     priority: "important",
     dueDate: "2025-09-02",
     pomodoros: 3,
+    category: "Health",
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export const tasks = [
     priority: "later",
     dueDate: "2025-08-28",
     pomodoros: 1,
+    category: "Leisure",
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export const tasks = [
     priority: "urgent",
     dueDate: "2025-08-30",
     pomodoros: 4,
+    category: "Work",
   },
   {
     id: 5,
@@ -43,5 +47,6 @@ export const tasks = [
     priority: "important",
     dueDate: "2025-08-29",
     pomodoros: 2,
+    category: "Work",
   },
 ];
