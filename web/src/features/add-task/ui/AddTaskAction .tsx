@@ -1,22 +1,22 @@
-import { BaseModal } from "@/shared/ui/modal";
-import { AddTaskModalForm } from "./AddTaskModalForm";
 import { useState } from "react";
-
 import { Button } from "@/shared/ui/button";
+import { BaseModal } from "@/shared/ui/modal";
+import { TaskForm } from "@/entities/task";
+import { useAddTaskFeature } from "../model/useAddTaskForm";
 
 export const AddTaskAction = () => {
   const [open, setOpen] = useState(false);
+
+  const { form, onSubmit } = useAddTaskFeature(() => setOpen(false));
+
   return (
     <>
-      <Button
-        className="bg-bg-tertiary"
-        onClick={() => setOpen(true)}
-        title="Add task"
-      >
+      <Button onClick={() => setOpen(true)} className="bg-bg-tertiary">
         Add task
       </Button>
+
       <BaseModal open={open} onOpenChange={setOpen} title="Add New Task">
-        <AddTaskModalForm onSuccess={()=> setOpen(false)} />
+        <TaskForm form={form} onSubmit={onSubmit} submitLabel="Create" />
       </BaseModal>
     </>
   );

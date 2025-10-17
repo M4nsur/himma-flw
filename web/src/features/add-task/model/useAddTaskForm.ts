@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { addTaskSchema, type AddTaskFormValues } from "./schema";
+import { addTaskSchema } from "./schema";
+import type { TaskFormProps } from "@/entities/task";
 
-export const useAddTaskForm = (onSuccess?: () => void) => {
-  const form = useForm<AddTaskFormValues>({
+export const useAddTaskFeature = () => {
+  const form = useForm<TaskFormProps>({
     resolver: zodResolver(addTaskSchema),
     defaultValues: {
       category: "None",
@@ -13,7 +14,6 @@ export const useAddTaskForm = (onSuccess?: () => void) => {
 
   const onSubmit = form.handleSubmit((data) => {
     console.log(data);
-    onSuccess?.();
   });
 
   return {
