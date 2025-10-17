@@ -6,10 +6,10 @@ import { PRIORITY_OPTIONS } from "../model/constants";
 import { Textarea } from "@/shared/ui/textarea";
 import { DataPicker } from "@/shared/ui/data-picker";
 import { Button } from "@/shared/ui/button";
-import type { TaskFormProps } from "../model/types";
+import type {AddTaskFormValues} from '../model/schema';
 interface TaskFormProps {
-  form: UseFormReturn<TaskFormProps>;
-  onSubmit: (values: TaskFormProps) => void;
+  form: UseFormReturn<AddTaskFormValues>;
+  onSubmit: (values: AddTaskFormValues) => void;
   submitLabel?: string;
 }
 
