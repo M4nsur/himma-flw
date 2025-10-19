@@ -16,7 +16,7 @@ interface IconProps {
   color?: string;
 }
 
-export function Icon({ name, size = 16, className, color }: IconProps) {
+export function Icon({ name, size = 16, className }: IconProps) {
   const Svg = icons[name];
   if (!Svg) return null;
 
@@ -24,8 +24,7 @@ export function Icon({ name, size = 16, className, color }: IconProps) {
     <Svg
       width={size}
       height={size}
-      style={{ color }}
-      className={cn("inline-block text-current shrink-0", className)}
+      className={cn("inline-block [&_path]:stroke-current shrink-0", className)}
     />
   );
 }
