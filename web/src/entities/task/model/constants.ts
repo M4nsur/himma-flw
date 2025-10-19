@@ -1,5 +1,5 @@
 export const PRIORITY_OPTIONS = [
-  { value: "low", label: "Низкий" },
-  { value: "medium", label: "Средний" },
-  { value: "high", label: "Высокий" },
+  { value: "low", label: "Low" },
+  { value: "medium", label: "Medium" },
+  { value: "high", label: "High" },
 ];
