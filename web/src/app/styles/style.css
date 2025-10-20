@@ -8,22 +8,21 @@
   --color-background: #1e1e1e;
   --color-foreground: #ffffff;
 
-  /* остальные цвета */
   --color-bg-primary: #1e1e1e;
   --color-bg-secondary: #121212;
   --color-bg-tertiary: #1e2128ff;
 
   --color-text-primary: #ffffff;
-  --color-text-secondary: #50728a;
+  --color-text-secondary: #a9a9a9;
   --color-text-error: #ff5c5c;
 
   --color-accent: #50728a;
-  --color-accent-foreground: #ffffff;
+  --color-accent-foreground: #a9a9a9;
   --color-accent-hover: #5f8ea8;
   --color-accent-light: #8db6cc;
   --color-accent-contributionFill: #395768;
 
-  --color-border: #648e9e;
+  --color-border: #a9a9a9;
   --color-ring: #8db6cc;
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.5);
 
@@ -40,7 +39,7 @@
   --accent: var(--color-accent);
   --accent-foreground: var(--color-text-primary);
 
-  --border: var(--color-bg-tertiary);
+  --border: var(--color-border);
   --input: var(--color-bg-tertiary);
   --ring: var(--color-accent-light);
 
@@ -81,4 +80,7 @@ html.dark {
   a {
     @apply text-accent transition-colors hover:text-accent-hover;
   }
+}
+
+@layer components {
 }

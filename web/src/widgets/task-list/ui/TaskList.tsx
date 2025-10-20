@@ -17,7 +17,7 @@ export const TaskList = ({ tasks, variant }: TaskListProps) => {
   return (
     <section className={variant === "completed" ? "mt-10" : ""}>
       {title && <h2 className="mb-4 font-bold text-2xl">{title}</h2>}
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         {filteredTasks.map((task) => (
           <TaskCard key={task.id} task={task} />
         ))}
