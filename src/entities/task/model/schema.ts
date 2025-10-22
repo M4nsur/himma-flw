@@ -6,6 +6,7 @@ export const addTaskSchema = z.object({
   dueDate: z.date().optional(),
   category: z.string().optional(),
   priority: z.enum(["low", "medium", "high"]),
+  pomodoro: z.number().default(0),
 });
 
 export type AddTaskFormValues = z.infer<typeof addTaskSchema>;
