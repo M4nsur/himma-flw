@@ -18,27 +18,36 @@ export const TasksPage = () => {
     mode: "view",
   });
 
-  const handleOpenTaskClick = useCallback((task: TaskCardType) => {
-    setDrawerState(() => ({
-      isOpen: true,
-      task,
-      mode: "view",
-    }));
-    console.log(drawerState);
-  }, []);
+  const handleOpenTaskClick = useCallback(
+    (task: TaskCardType) => {
+      setDrawerState(() => ({
+        isOpen: true,
+        task,
+        mode: "view",
+      }));
+      console.log(drawerState);
+    },
+    [drawerState]
+  );
 
-  const handleEditTaskClick = useCallback((task: TaskCardType) => {
-    setDrawerState(() => ({
-      isOpen: true,
-      task,
-      mode: "edit",
-    }));
-    console.log(drawerState);
-  }, []);
+  const handleEditTaskClick = useCallback(
+    (task: TaskCardType) => {
+      setDrawerState(() => ({
+        isOpen: true,
+        task,
+        mode: "edit",
+      }));
+      console.log(drawerState);
+    },
+    [drawerState]
+  );
 
-  const handleTaskDelete = useCallback((id: number) => {
-    console.log(`deleted task ${id}`);
-  }, []);
+  const handleTaskDelete = useCallback(
+    (id: number) => {
+      console.log(`deleted task ${id}`);
+    },
+    []
+  );
 
   return (
     <div>
