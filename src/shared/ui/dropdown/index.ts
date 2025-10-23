@@ -1,1 +1,1 @@
-export { DropdownMenu } from "./dropdown-menu";
+export { DropdownMenu } from "../../lib/shadcn/dropdown-menu";

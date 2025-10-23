@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-} from "./dropdown-menu";
+} from "../../lib/shadcn";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/";
 import { ChevronDown } from "lucide-react";

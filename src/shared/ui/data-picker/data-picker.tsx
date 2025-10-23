@@ -3,12 +3,8 @@
 import * as React from "react";
 import { ChevronDownIcon } from "lucide-react";
 import { Button } from "@/shared/ui/button";
-import { Calendar } from "@/shared/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/shared/ui/popover/popover";
+import { Calendar } from "@/shared/lib/shadcn";
+import { Popover, PopoverContent, PopoverTrigger } from "@/shared/lib/shadcn";
 
 interface DataPickerProps {
   value?: Date;
