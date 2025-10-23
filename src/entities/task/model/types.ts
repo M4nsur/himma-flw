@@ -1,6 +1,6 @@
 export type Priority = "low" | "medium" | "high";
 
-export interface Task {
+export interface TaskCardType {
   id: number;
   title: string;
   description: string;
@@ -13,7 +13,7 @@ export interface Task {
 }
 
 export interface TaskCardProps {
-  task: Task;
+  task: TaskCardType;
   onDelete?: (id: number) => void;
-  onEdit?: (id: number) => void;
+  onEdit?: (task: TaskCardType) => void;
 }
