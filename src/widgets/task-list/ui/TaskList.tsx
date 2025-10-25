@@ -1,20 +1,20 @@
 import type { TaskCardType } from "@/entities/task";
 import { TaskCard } from "@/entities/task/ui/TaskCard";
 
+type DrawerMode = "view" | "edit";
 interface TaskListProps {
   tasks: TaskCardType[];
   variant?: "active" | "completed";
   title?: string;
-  onOpen: (task: TaskCardType) => void;
-  onEdit: (task: TaskCardType) => void;
-  onDelete: (id: number) => void;
+  onOpenDrawer: (task: TaskCardType, mode: DrawerMode) => void;
+  onDeleteTask: (id: number) => void;
 }
 
 export const TaskList = ({
   tasks,
   variant = "active",
-  onDelete,
-  onEdit,
+  onOpenDrawer,
+  onDeleteTask,
 }: TaskListProps) => {
   const filteredTasks =
     variant === "active"
@@ -28,8 +28,8 @@ export const TaskList = ({
       <div className="flex flex-wrap gap-4">
         {filteredTasks.map((task) => (
           <TaskCard
-            onDelete={onDelete} 
-            onEdit={onEdit}
+            onOpenDrawer={onOpenDrawer}
+            onDeleteTask={onDeleteTask}
             key={task.id}
             task={task}
           />

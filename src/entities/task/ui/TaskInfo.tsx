@@ -1,19 +1,16 @@
-import type { UseFormProps } from "react-hook-form";
-import type { AddTaskFormValues } from "../model/schema";
+import type { TaskCardType } from "../model/types";
 
 interface TaskInfoProps {
-  taskValues: AddTaskFormValues;
+  task: TaskCardType;
 }
 
-export const TaskInfo = ({
-  title,
-  description,
-  priority,
-  dueDate,
-  category,
-  pomodoro,
-}: AddTaskFormValues) => {
-  return <div>
-    
-  </div>;
+export const TaskInfo = ({ task }: TaskInfoProps) => {
+  return (
+    <div>
+      <div className="text-text-secondary space-y-2">
+        <p>{task.description}</p>
+        <p className="text-sm">Deadline: {task.dueDate}</p>
+      </div>
+    </div>
+  );
 };
