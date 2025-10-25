@@ -5,10 +5,14 @@ import { Checkbox } from "@/shared/ui/checkbox";
 import React from "react";
 
 export const TaskCard = React.memo(
-  ({ task, onEdit, onDelete }: TaskCardProps) => {
+  ({ task, onOpenDrawer, onDeleteTask }: TaskCardProps) => {
     console.log("rendred card");
+
     return (
-      <div className="flex justify-between items-center gap-1 bg-bg-primary p-4 rounded-2xl w-[500px] h-[220px]">
+      <div
+        onClick={() => onOpenDrawer(task, "view")}
+        className="flex justify-between items-center gap-1 bg-bg-primary p-4 rounded-2xl w-[500px] h-[220px]"
+      >
         <div className="flex gap-4">
           <Checkbox className="mt-1 size-5" />
           <div>
@@ -23,14 +27,17 @@ export const TaskCard = React.memo(
         </div>
         <div className="flex justify-between gap-2">
           <Button
-            onClick={() => onEdit?.(task)}
+            onClick={(e) => {
+              onOpenDrawer(task, "edit");
+              e.stopPropagation();
+            }}
             className="flex bg-bg-secondary"
           >
             <Icon name="pencil" />
           </Button>
           <Button
             className="bg-bg-secondary"
-            onClick={() => onDelete?.(task.id)}
+            onClick={() => onDeleteTask(task.id)}
           >
             <Icon name="trash" />
           </Button>

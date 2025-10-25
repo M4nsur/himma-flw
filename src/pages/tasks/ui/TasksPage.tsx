@@ -2,72 +2,46 @@ import { PageHeader } from "@/shared/ui/page-header";
 import { AddTaskAction } from "@/features/add-task";
 import { TaskList } from "@/widgets/task-list";
 import { tasks } from "@/shared/values";
-import type { TaskCardType } from "@/entities/task/model/types";
-import { useCallback, useState } from "react";
-
-type DrawerState = {
-  isOpen: boolean;
-  task: TaskCardType | null;
-  mode: "view" | "edit";
-};
+import { useTaskDrawer } from "@/widgets/task-drawer/model/useTaskDrawer";
+import { TaskDrawer } from "@/widgets/task-drawer";
 
 export const TasksPage = () => {
-  const [drawerState, setDrawerState] = useState<DrawerState>({
-    isOpen: false,
-    task: null,
-    mode: "view",
-  });
-
-  const handleOpenTaskClick = useCallback(
-    (task: TaskCardType) => {
-      setDrawerState(() => ({
-        isOpen: true,
-        task,
-        mode: "view",
-      }));
-      console.log(drawerState);
-    },
-    [drawerState]
-  );
-
-  const handleEditTaskClick = useCallback(
-    (task: TaskCardType) => {
-      setDrawerState(() => ({
-        isOpen: true,
-        task,
-        mode: "edit",
-      }));
-      console.log(drawerState);
-    },
-    [drawerState]
-  );
-
-  const handleTaskDelete = useCallback(
-    (id: number) => {
-      console.log(`deleted task ${id}`);
-    },
-    []
-  );
-
+  const {
+    drawerState,
+    isSaving,
+    isDeleting,
+    openDrawer,
+    closeDrawer,
+    setActiveTab,
+    handleSaveTask,
+    handleDeleteTask,
+  } = useTaskDrawer();
   return (
     <div>
       <PageHeader title="Tasks" action={<AddTaskAction />}></PageHeader>
       <div className="flex flex-col">
         <TaskList
-          onOpen={handleOpenTaskClick}
-          onEdit={handleEditTaskClick}
-          onDelete={handleTaskDelete}
+          onOpenDrawer={openDrawer}
+          onDeleteTask={handleDeleteTask}
           tasks={tasks}
         />
         <TaskList
-          onOpen={handleOpenTaskClick}
-          onEdit={handleEditTaskClick}
-          onDelete={handleTaskDelete}
+          onOpenDrawer={openDrawer}
+          onDeleteTask={handleDeleteTask}
           variant="completed"
           title="Completed tasks"
           tasks={tasks}
         />
       </div>
+      <TaskDrawer
+        drawerState={drawerState}
+        isSaving={isSaving}
+        isDeleting={isDeleting}
+        setActiveTab={setActiveTab}
+        closeDrawer={closeDrawer}
+        handleSaveTask={handleSaveTask}
+        handleDeleteTask={handleDeleteTask}
+      />
     </div>
   );
 };

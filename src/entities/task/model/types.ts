@@ -14,6 +14,6 @@ export interface TaskCardType {
 
 export interface TaskCardProps {
   task: TaskCardType;
-  onDelete?: (id: number) => void;
-  onEdit?: (task: TaskCardType) => void;
+  onDeleteTask: (id: number) => void;
+  onOpenDrawer: (task: TaskCardType, mode: "edit" | "view") => void;
 }
