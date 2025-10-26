@@ -1,4 +1,5 @@
 export type Priority = "low" | "medium" | "high";
+export type drawerMode = "view" | "edit";
 
 export interface TaskCardType {
   id: string;
@@ -12,8 +13,12 @@ export interface TaskCardType {
   category: string | null;
 }
 
-export interface TaskCardProps {
-  task: TaskCardType;
+export interface DrawerState<T> {
+  isOpen: boolean;
+  data: T | null;
+  mode: drawerMode;
 
-  actions: React.ReactNode;
+  openDrawer: (data: T, mode: "view" | "edit") => void;
+  closeDrawer: () => void;
+  setMode: (mode: "view" | "edit") => void;
 }

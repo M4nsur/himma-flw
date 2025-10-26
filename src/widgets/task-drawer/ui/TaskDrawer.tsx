@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+// widgets/task-drawer/ui/TaskDrawer.tsx
+import { useState } from "react";
 import { X, Trash2 } from "lucide-react";
 import {
   Drawer,
@@ -7,7 +8,6 @@ import {
   DrawerTitle,
 } from "@/shared/lib/shadcn";
 import { Tabs, TabsList, TabsTrigger } from "@/shared/lib/shadcn";
-import { Button } from "@/shared/ui/button";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,40 +18,30 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/shared/lib/shadcn";
-
-import type { TaskCardType } from "@/entities/task/model/types";
-import type { DrawerMode, DrawerState } from "./model/types";
+import { Button } from "@/shared/ui/button";
 import { TaskInfo } from "@/entities/task/ui/TaskInfo";
+import { useTaskDrawerStore } from "@/shared/lib";
+import { useDeleteTask } from "@/features/task/deleteTask";
 
-interface TaskDrawerProps {
-  drawerState: DrawerState;
-  isSaving: boolean;
-  isDeleting: boolean;
-  setActiveTab: (mode: DrawerMode) => void;
-  closeDrawer: () => void;
-  handleSaveTask: (task: TaskCardType) => Promise<void>;
-  handleDeleteTask: (taskId: number) => Promise<void>;
-}
+export const TaskDrawer = () => {
+  const {
+    isOpen,
+    data: task,
+    mode,
+    closeDrawer,
+    setMode,
+  } = useTaskDrawerStore();
 
-export const TaskDrawer = ({
-  drawerState,
-  isSaving,
-  isDeleting,
-  setActiveTab,
-  closeDrawer,
-  handleSaveTask,
-  handleDeleteTask,
-}: TaskDrawerProps) => {
-  const { isOpen, task, mode } = drawerState;
+  const { isDeleting, handleDeleteTask } = useDeleteTask();
 
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showSaveDialog, setShowSaveDialog] = useState(false);
 
-  if (!task) return null;
+  if (!isOpen || !task) return null;
 
-  const tabs: Array<{ value: DrawerMode; label: string }> = [
-    { value: "view", label: "View" },
-    { value: "edit", label: "Edit" },
+  const tabs = [
+    { value: "view" as const, label: "View" },
+    { value: "edit" as const, label: "Edit" },
   ];
 
   const handleDelete = async () => {
@@ -61,13 +51,14 @@ export const TaskDrawer = ({
 
   const handleSave = async () => {
     setShowSaveDialog(false);
-    await handleSaveTask(task);
+
+    console.log("Saving task:", task);
   };
 
   return (
     <>
       <Drawer open={isOpen} onOpenChange={closeDrawer} direction="right">
-        <DrawerContent className=" bg-bg-primary border-bg-tertiary">
+        <DrawerContent className="bg-bg-primary border-bg-tertiary">
           <div className="flex flex-col h-full">
             {/* Header */}
             <DrawerHeader className="border-b border-bg-tertiary px-6 py-4 flex-shrink-0">
@@ -87,10 +78,9 @@ export const TaskDrawer = ({
                 </Button>
               </div>
 
-              {/* Tabs */}
               <Tabs
                 value={mode}
-                onValueChange={(v) => setActiveTab(v as DrawerMode)}
+                onValueChange={(v) => setMode(v as "view" | "edit")}
               >
                 <TabsList className="bg-bg-tertiary border-none h-10">
                   {tabs.map((tab) => (
@@ -106,13 +96,11 @@ export const TaskDrawer = ({
               </Tabs>
             </DrawerHeader>
 
-            {/* Content */}
             <div className="flex-1 overflow-y-auto px-6 py-6">
               {mode === "view" ? (
                 <TaskInfo task={task} />
               ) : (
                 <div className="text-text-secondary italic">
-                  {/* Тут можно отрендерить форму редактирования */}
                   Edit form placeholder
                 </div>
               )}
@@ -131,16 +119,16 @@ export const TaskDrawer = ({
 
               <Button
                 onClick={() => setShowSaveDialog(true)}
-                disabled={isSaving}
                 className="bg-accent hover:bg-accent-hover text-text-primary"
               >
-                {isSaving ? "Saving..." : "Save Changes"}
+                Save Changes
               </Button>
             </div>
           </div>
         </DrawerContent>
       </Drawer>
 
+      {/* for delete */}
       <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
         <AlertDialogContent className="bg-bg-primary border-bg-tertiary">
           <AlertDialogHeader>
@@ -166,7 +154,7 @@ export const TaskDrawer = ({
         </AlertDialogContent>
       </AlertDialog>
 
-      {/* Save Confirmation Dialog */}
+      {/* for save */}
       <AlertDialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
         <AlertDialogContent className="bg-bg-primary border-bg-tertiary">
           <AlertDialogHeader>
