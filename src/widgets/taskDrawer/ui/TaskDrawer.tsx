@@ -21,7 +21,7 @@ import {
 import { Button } from "@/shared/ui/button";
 import { TaskInfo } from "@/entities/task/ui/TaskInfo";
 import { useTaskDrawerStore } from "@/shared/lib";
-import { useDeleteTask } from "@/features/task/deleteTask";
+import { useDeleteTask } from "@/features/task/taskDelete";
 
 export const TaskDrawer = () => {
   const {

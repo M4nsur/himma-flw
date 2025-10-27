@@ -14,23 +14,21 @@ export const TaskCard = React.memo(({ task, actions }: TaskCardProps) => {
       className="flex justify-between items-center gap-1 bg-bg-primary p-4 rounded-2xl w-[500px] h-[220px] cursor-pointer"
     >
       <div className="flex gap-4">
-        <Checkbox className="mt-1 size-5" />
+        <Checkbox
+          className="mt-1 size-5"
+          onClick={(e) => e.stopPropagation()}
+        />
         <div>
-          <div className="mb-[8px] font-bold">{task.title}</div>
+          <div className="mb-2 font-bold">{task.title}</div>
           <div className="flex flex-col gap-2 text-text-secondary">
             <div className="line-clamp-4">{task.description}</div>
-            <div className="bg-bg-secondary px-[8px] py-[6px] rounded-xl w-fit text-[14px] text-center">
+            <div className="bg-bg-secondary px-4 py-1.5 rounded-xl w-fit text-[14px] text-center">
               Deadline:{task.dueDate}
             </div>
           </div>
         </div>
       </div>
-      <div
-        className="flex justify-between gap-2"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {actions}
-      </div>
+      <div className="flex justify-between gap-2">{actions}</div>
     </div>
   );
 });
