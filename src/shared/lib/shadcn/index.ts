@@ -1,5 +1,5 @@
 export { Calendar } from "./calendar";
-export { Dialog } from "./dialog";
+
 export { Popover, PopoverContent, PopoverTrigger } from "./popover";
 export {
   DropdownMenu,
@@ -34,3 +34,16 @@ export {
   AlertDialogAction,
   AlertDialogCancel,
 } from "./alert-dialog";
+
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from "./dialog";

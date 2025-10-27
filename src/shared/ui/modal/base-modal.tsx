@@ -1,10 +1,20 @@
-import { X } from "lucide-react";
+import * as React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogOverlay,
+  DialogPortal,
+} from "@/shared/lib/shadcn";
+import { cn } from "@/shared/lib";
 
 interface BaseModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   title: string;
   children: React.ReactNode;
+  className?: string;
 }
 
 export const BaseModal = ({
@@ -12,31 +22,28 @@ export const BaseModal = ({
   onOpenChange,
   title,
   children,
+  className,
 }: BaseModalProps) => {
-  if (!open) return null;
-
   return (
-    <>
-      <div
-        className="z-40 fixed inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={() => onOpenChange(false)}
-      />
-
-      <div className="z-50 fixed inset-0 flex justify-center items-center p-4">
-        <div className="relative bg-bg-tertiary bg-card shadow-2xl rounded-lg w-full max-w-md">
-          <div className="flex justify-between items-center p-4">
-            <h2 className="font-semibold text-foreground text-lg">{title}</h2>
-            <button
-              onClick={() => onOpenChange(false)}
-              className="bg-inherit hover:bg-bg-secondary p-1 transition-colors"
-            >
-              <X />
-            </button>
-          </div>
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogPortal>
+        <DialogOverlay className="bg-bg-tertiary/60 backdrop-blur-lg" />
+        <DialogContent
+          className={cn(
+            "bg-bg-tertiary bg-card shadow-2xl rounded-lg w-full max-w-md p-0",
+            className
+          )}
+          showCloseButton={true}
+        >
+          <DialogHeader className="flex flex-row justify-between items-center p-4 pb-0">
+            <DialogTitle className="font-semibold text-foreground text-lg">
+              {title}
+            </DialogTitle>
+          </DialogHeader>
 
           <div className="p-4">{children}</div>
-        </div>
-      </div>
-    </>
+        </DialogContent>
+      </DialogPortal>
+    </Dialog>
   );
 };

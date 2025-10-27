@@ -1,9 +1,9 @@
 import { PageHeader } from "@/shared/ui/page-header";
-import { AddTaskAction } from "@/features/task/addTask";
-import { TaskList } from "@/widgets/task-list";
+import { AddTaskAction } from "@/features/task/taskAdd";
+import { TaskList } from "@/widgets/taskList";
 import { tasks } from "@/shared/values";
 
-import { TaskDrawer } from "@/widgets/task-drawer";
+import { TaskDrawer } from "@/widgets/taskDrawer";
 
 export const TasksPage = () => {
   return (
