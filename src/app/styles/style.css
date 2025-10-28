@@ -10,7 +10,9 @@
 
   --color-bg-primary: #1e1e1e;
   --color-bg-secondary: #121212;
-  --color-bg-tertiary: #1e2128ff;
+  --color-bg-tertiary: #2a2d35;
+  --color-bg-button: #2a2d35;
+  --color-bg-button-hover: #363a45;
 
   --color-text-primary: #ffffff;
   --color-text-secondary: #a9a9a9;
@@ -63,7 +65,6 @@ html.dark {
   --ring: var(--color-accent-hover);
 }
 
-/* ====== GLOBAL LAYER ====== */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -74,7 +75,7 @@ html.dark {
   }
 
   button {
-    @apply rounded-md text-accent-foreground cursor-pointer;
+    @apply rounded-md text-accent-foreground cursor-pointer bg-bg-button transition-colors hover:bg-bg-button-hover;
   }
 
   a {

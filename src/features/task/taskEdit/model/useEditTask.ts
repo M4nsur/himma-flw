@@ -1,4 +1,4 @@
-import { useTaskDrawerStore } from "@/shared/lib/index";
+import { useTaskDrawerStore } from "@/shared/lib/drawerTaskManager/index";
 import type { TaskCardType } from "@/entities/task/";
 import type { drawerMode } from "@/shared/lib/drawerTaskManager/types";
 

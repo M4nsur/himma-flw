@@ -1,6 +1,6 @@
 // widgets/task-drawer/ui/TaskDrawer.tsx
-import { useState } from "react";
-import { X, Trash2 } from "lucide-react";
+
+import { X } from "lucide-react";
 import {
   Drawer,
   DrawerContent,
@@ -8,20 +8,11 @@ import {
   DrawerTitle,
 } from "@/shared/lib/shadcn";
 import { Tabs, TabsList, TabsTrigger } from "@/shared/lib/shadcn";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/shared/lib/shadcn";
+
 import { Button } from "@/shared/ui/button";
 import { TaskInfo } from "@/entities/task/ui/TaskInfo";
-import { useTaskDrawerStore } from "@/shared/lib";
-import { useDeleteTask } from "@/features/task/taskDelete";
+import { useTaskDrawerStore } from "@/shared/lib/drawerTaskManager";
+import { DeleteTaskButton } from "@/features/task/taskDelete"; // ✅
 
 export const TaskDrawer = () => {
   const {
@@ -32,28 +23,12 @@ export const TaskDrawer = () => {
     setMode,
   } = useTaskDrawerStore();
 
-  const { isDeleting, handleDeleteTask } = useDeleteTask();
-
-  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [showSaveDialog, setShowSaveDialog] = useState(false);
-
   if (!isOpen || !task) return null;
 
   const tabs = [
     { value: "view" as const, label: "View" },
     { value: "edit" as const, label: "Edit" },
   ];
-
-  const handleDelete = async () => {
-    setShowDeleteDialog(false);
-    await handleDeleteTask(task.id);
-  };
-
-  const handleSave = async () => {
-    setShowSaveDialog(false);
-
-    console.log("Saving task:", task);
-  };
 
   return (
     <>
@@ -96,6 +71,7 @@ export const TaskDrawer = () => {
               </Tabs>
             </DrawerHeader>
 
+            {/* Content */}
             <div className="flex-1 overflow-y-auto px-6 py-6">
               {mode === "view" ? (
                 <TaskInfo task={task} />
@@ -106,78 +82,20 @@ export const TaskDrawer = () => {
               )}
             </div>
 
-            <div className="border-t border-bg-tertiary px-6 py-4 flex items-center justify-between flex-shrink-0">
-              <Button
-                variant="ghost"
-                onClick={() => setShowDeleteDialog(true)}
-                disabled={isDeleting}
-                className="text-text-secondary hover:text-text-error hover:bg-bg-tertiary flex items-center gap-2"
-              >
-                <Trash2 className="w-4 h-4" />
-                {isDeleting ? "Deleting..." : "Delete"}
-              </Button>
+            {/* Footer */}
+            <div className="border-t border-bg-tertiary px-6 py-4 flex items-center justify-between shrink-0">
+              <DeleteTaskButton taskId={task.id} variant="text" />
 
-              <Button
+              {/* <Button
                 onClick={() => setShowSaveDialog(true)}
                 className="bg-accent hover:bg-accent-hover text-text-primary"
               >
                 Save Changes
-              </Button>
+              </Button> */}
             </div>
           </div>
         </DrawerContent>
       </Drawer>
-
-      {/* for delete */}
-      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
-        <AlertDialogContent className="bg-bg-primary border-bg-tertiary">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-text-primary">
-              Are you sure?
-            </AlertDialogTitle>
-            <AlertDialogDescription className="text-text-secondary">
-              This action cannot be undone. This will permanently delete the
-              task.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel className="bg-bg-tertiary text-text-secondary hover:bg-bg-secondary">
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleDelete}
-              className="bg-text-error hover:bg-red-600 text-text-primary"
-            >
-              Delete
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
-      {/* for save */}
-      <AlertDialog open={showSaveDialog} onOpenChange={setShowSaveDialog}>
-        <AlertDialogContent className="bg-bg-primary border-bg-tertiary">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-text-primary">
-              Save changes?
-            </AlertDialogTitle>
-            <AlertDialogDescription className="text-text-secondary">
-              Are you sure you want to save these changes?
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel className="bg-bg-tertiary text-text-secondary hover:bg-bg-secondary">
-              Cancel
-            </AlertDialogCancel>
-            <AlertDialogAction
-              onClick={handleSave}
-              className="bg-accent hover:bg-accent-hover text-text-primary"
-            >
-              Save
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </>
   );
 };

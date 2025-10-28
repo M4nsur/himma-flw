@@ -1,34 +1,49 @@
-import { useTaskDrawerStore } from "@/shared/lib";
+import { useTaskDrawerStore } from "@/shared/lib/drawerTaskManager";
 import type { TaskCardProps } from "../model/types";
 import { Checkbox } from "@/shared/ui/checkbox";
 import React from "react";
 
 export const TaskCard = React.memo(({ task, actions }: TaskCardProps) => {
-  console.log("rendred card");
-
   const openDrawer = useTaskDrawerStore((state) => state.openDrawer);
 
   return (
-    <div
+    <div 
+      className="group relative bg-bg-secondary border border-bg-tertiary rounded-xl p-5 hover:border-accent/50 transition-all duration-200 cursor-pointer w-full max-w-md h-50 flex flex-col"
       onClick={() => openDrawer(task, "view")}
-      className="flex justify-between items-center gap-1 bg-bg-primary p-4 rounded-2xl w-[500px] h-[220px] cursor-pointer"
     >
-      <div className="flex gap-4">
+      {/* Header с checkbox */}
+      <div className="flex items-start gap-3 mb-3">
         <Checkbox
-          className="mt-1 size-5"
+          className="mt-0.5 size-5 shrink-0"
           onClick={(e) => e.stopPropagation()}
         />
-        <div>
-          <div className="mb-2 font-bold">{task.title}</div>
-          <div className="flex flex-col gap-2 text-text-secondary">
-            <div className="line-clamp-4">{task.description}</div>
-            <div className="bg-bg-secondary px-4 py-1.5 rounded-xl w-fit text-[14px] text-center">
-              Deadline:{task.dueDate}
-            </div>
-          </div>
+        <h3 className="font-semibold text-text-primary text-base leading-tight flex-1 line-clamp-1">
+          {task.title}
+        </h3>
+      </div>
+
+      {/* Description */}
+      <p className="text-text-secondary text-sm leading-relaxed line-clamp-3 mb-auto ml-8">
+        {task.description}
+      </p>
+
+      {/* Footer */}
+      <div className="flex items-center justify-between ml-8 mt-3">
+        <div className="inline-flex items-center gap-2 bg-bg-tertiary px-3 py-1.5 rounded-lg text-xs text-text-secondary">
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+          {task.dueDate}
+        </div>
+
+        {/* Actions */}
+        <div 
+          className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {actions}
         </div>
       </div>
-      <div className="flex justify-between gap-2">{actions}</div>
     </div>
   );
 });

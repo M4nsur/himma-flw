@@ -1,4 +1,4 @@
-import { cn } from "@/shared/lib";
+import { cn } from "@/shared/lib/classnames";
 import Pencil from "@/shared/assets/icons/edit.svg?react";
 import Trash from "@/shared/assets/icons/trash.svg?react";
 

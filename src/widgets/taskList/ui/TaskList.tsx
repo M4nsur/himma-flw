@@ -30,7 +30,7 @@ export const TaskList = ({ tasks, variant = "active" }: TaskListProps) => {
               <>
                 <EditTaskButton task={task} />
 
-                <DeleteTaskButton taskId={task.id} variant="icon" />
+                <DeleteTaskButton taskId={task.id} />
               </>
             }
           />
@@ -39,3 +39,10 @@ export const TaskList = ({ tasks, variant = "active" }: TaskListProps) => {
     </section>
   );
 };
+{
+  /* <DeleteTaskButton
+  taskId={task.id}
+  variant="text"
+  onDeleteSuccess={closeDrawer}
+/>; */
+}

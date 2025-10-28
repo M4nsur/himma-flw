@@ -15,7 +15,10 @@ const EditTaskButton = ({ task }: EditTaskButtonProps) => {
   };
 
   return (
-    <Button onClick={handleClick} className="flex bg-bg-secondary">
+    <Button
+      onClick={handleClick}
+      className="flex hover:bg-bg-button-hover bg-bg-button"
+    >
       <Icon name="pencil" className="w-4 h-4" />
     </Button>
   );
