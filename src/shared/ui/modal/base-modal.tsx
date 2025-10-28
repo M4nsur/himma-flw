@@ -7,7 +7,7 @@ import {
   DialogOverlay,
   DialogPortal,
 } from "@/shared/lib/shadcn";
-import { cn } from "@/shared/lib";
+import { cn } from "@/shared/lib/classnames";
 
 interface BaseModalProps {
   open: boolean;

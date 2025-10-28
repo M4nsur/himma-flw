@@ -1,5 +1,5 @@
-import { createDrawerStore } from "./drawerStore";
-import type { TaskCardType } from "./types";
+import type { TaskCardType } from "@/entities/task";
 
+import { createDrawerStore } from "./drawerStore";
 
 export const useTaskDrawerStore = createDrawerStore<TaskCardType>("taskDrawer");

@@ -8,7 +8,7 @@ import {
   DropdownMenuRadioItem,
 } from "../../lib/shadcn";
 import { Button } from "@/shared/ui/button";
-import { cn } from "@/shared/lib/";
+import { cn } from "@/shared/lib/classnames";
 import { ChevronDown } from "lucide-react";
 import { Controller } from "react-hook-form";
 import type { Control, FieldValues, Path } from "react-hook-form";
