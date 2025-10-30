@@ -1,13 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/shared/ui/button";
 import { BaseModal } from "@/shared/ui/modal";
-import { TaskForm } from "@/entities/task";
-import { useAddTaskFeature } from "../model/useAddTaskForm";
+import { TaskForm } from "./TaskForm";
 
 export const AddTaskAction = () => {
   const [open, setOpen] = useState(false);
-
-  const { form, onSubmit } = useAddTaskFeature(() => setOpen(false));
 
   return (
     <>
@@ -16,7 +13,7 @@ export const AddTaskAction = () => {
       </Button>
 
       <BaseModal open={open} onOpenChange={setOpen} title="Add New Task">
-        <TaskForm form={form} onSubmit={onSubmit} submitLabel="Create" />
+        <TaskForm />
       </BaseModal>
     </>
   );

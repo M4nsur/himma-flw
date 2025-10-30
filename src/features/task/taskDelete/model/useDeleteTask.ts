@@ -1,5 +1,6 @@
+import { useTaskDrawerStore } from "@/entities/task";
 import { useCallback, useState } from "react";
-import { useTaskDrawerStore } from "@/shared/lib/drawerTaskManager/index";
+
 
 export const useDeleteTask = () => {
   const [isDeleting, setIsDeleting] = useState(false);
