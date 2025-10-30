@@ -1,5 +1,3 @@
-// widgets/task-drawer/ui/TaskDrawer.tsx
-
 import { X } from "lucide-react";
 import {
   Drawer,
@@ -11,8 +9,9 @@ import { Tabs, TabsList, TabsTrigger } from "@/shared/lib/shadcn";
 
 import { Button } from "@/shared/ui/button";
 import { TaskInfo } from "@/entities/task/ui/TaskInfo";
-import { useTaskDrawerStore } from "@/shared/lib/drawerTaskManager";
+
 import { DeleteTaskButton } from "@/features/task/taskDelete"; // ✅
+import { useTaskDrawerStore } from "@/entities/task";
 
 export const TaskDrawer = () => {
   const {
@@ -85,13 +84,6 @@ export const TaskDrawer = () => {
             {/* Footer */}
             <div className="border-t border-bg-tertiary px-6 py-4 flex items-center justify-between shrink-0">
               <DeleteTaskButton taskId={task.id} variant="text" />
-
-              {/* <Button
-                onClick={() => setShowSaveDialog(true)}
-                className="bg-accent hover:bg-accent-hover text-text-primary"
-              >
-                Save Changes
-              </Button> */}
             </div>
           </div>
         </DrawerContent>

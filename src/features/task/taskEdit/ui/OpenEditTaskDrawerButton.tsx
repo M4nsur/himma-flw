@@ -1,17 +1,17 @@
 import { Button } from "@/shared/ui/button";
 import { Icon } from "@/shared/ui/icon/Icon";
-import { useEditTask } from "../model/useEditTask";
-import type { TaskCardType } from "@/entities/task";
+import { useTaskDrawerStore, type TaskCardType } from "@/entities/task";
 
 interface EditTaskButtonProps {
   task: TaskCardType;
 }
 
-const EditTaskButton = ({ task }: EditTaskButtonProps) => {
-  const { handleEditTask } = useEditTask();
+export const OpenEditTaskDrawerButton = ({ task }: EditTaskButtonProps) => {
+  const openDrawer = useTaskDrawerStore((state) => state.openDrawer);
+
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    handleEditTask(task, "edit");
+    openDrawer(task, "edit");
   };
 
   return (
@@ -23,5 +23,3 @@ const EditTaskButton = ({ task }: EditTaskButtonProps) => {
     </Button>
   );
 };
-
-export default EditTaskButton;

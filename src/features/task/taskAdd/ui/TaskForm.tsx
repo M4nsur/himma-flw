@@ -1,36 +1,37 @@
 import { FormField } from "@/shared/ui/form-field";
 import { Input } from "@/shared/ui/input";
-import { Controller, type UseFormReturn } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { DropdownRadio } from "@/shared/ui/dropdown/dropdown-radio";
-import { PRIORITY_OPTIONS } from "../model/constants";
+import { DEFAULT_TASK_VALUES, PRIORITY_OPTIONS } from "../model/constants";
 import { Textarea } from "@/shared/ui/textarea";
 import { DataPicker } from "@/shared/ui/data-picker";
 import { Button } from "@/shared/ui/button";
-import type { AddTaskFormValues } from "../model/schema";
+import { addTaskSchema, type AddTaskFormValues } from "../model/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface TaskFormProps {
-  form: UseFormReturn<AddTaskFormValues>;
-  onSubmit: (values: AddTaskFormValues) => void;
-  submitLabel?: string;
-}
+export const TaskForm = () => {
+  const form = useForm<AddTaskFormValues>({
+    resolver: zodResolver(addTaskSchema),
+    defaultValues: DEFAULT_TASK_VALUES,
+  });
 
-export const TaskForm = ({
-  form,
-  onSubmit,
-  submitLabel = "Save",
-}: TaskFormProps) => {
   const {
     register,
     control,
     formState: { errors },
   } = form;
 
+  const onSubmit = (data: AddTaskFormValues) => {
+    console.log("its work", data);
+  };
+
+
+
   return (
     <form
-      onSubmit={form.handleSubmit(onSubmit)}
+      onSubmit={form.handleSubmit(onSubmit, onError)}
       className="flex flex-col gap-5"
     >
-      {/* Task Title */}
       <FormField label="Task title" error={errors.title?.message}>
         <Input
           placeholder="Enter task name"
@@ -39,7 +40,6 @@ export const TaskForm = ({
         />
       </FormField>
 
-      {/* Description */}
       <FormField label="Description">
         <Textarea
           placeholder="Add a description..."
@@ -48,7 +48,6 @@ export const TaskForm = ({
         />
       </FormField>
 
-      {/* Grid для Category и Priority */}
       <div className="grid grid-cols-2 gap-4">
         <FormField label="Category" error={errors.category?.message}>
           <DropdownRadio
@@ -69,7 +68,6 @@ export const TaskForm = ({
         </FormField>
       </div>
 
-      {/* Due Date */}
       <FormField label="Due Date">
         <Controller
           name="dueDate"
@@ -80,12 +78,11 @@ export const TaskForm = ({
         />
       </FormField>
 
-      {/* Submit Button */}
       <Button
         type="submit"
         className="bg-accent hover:bg-accent-hover text-text-primary font-medium py-2.5 mt-2 transition-all duration-200 hover:shadow-lg"
       >
-        {submitLabel}
+        Create
       </Button>
     </form>
   );

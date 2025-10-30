@@ -1,3 +1,4 @@
+// shared/store/drawerStore.ts
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import type { DrawerState } from "./types";

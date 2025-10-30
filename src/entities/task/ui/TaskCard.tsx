@@ -1,13 +1,14 @@
-import { useTaskDrawerStore } from "@/shared/lib/drawerTaskManager";
 import type { TaskCardProps } from "../model/types";
 import { Checkbox } from "@/shared/ui/checkbox";
 import React from "react";
+import Linkify from "linkify-react";
+import { useTaskDrawerStore } from "../model/useTaskDrawerStore";
 
 export const TaskCard = React.memo(({ task, actions }: TaskCardProps) => {
   const openDrawer = useTaskDrawerStore((state) => state.openDrawer);
 
   return (
-    <div 
+    <div
       className="group relative bg-bg-secondary border border-bg-tertiary rounded-xl p-5 hover:border-accent/50 transition-all duration-200 cursor-pointer w-full max-w-md h-50 flex flex-col"
       onClick={() => openDrawer(task, "view")}
     >
@@ -22,22 +23,31 @@ export const TaskCard = React.memo(({ task, actions }: TaskCardProps) => {
         </h3>
       </div>
 
-      {/* Description */}
-      <p className="text-text-secondary text-sm leading-relaxed line-clamp-3 mb-auto ml-8">
-        {task.description}
-      </p>
+      <div className="text-text-secondary text-sm leading-relaxed line-clamp-3 mb-auto ml-8">
+        <Linkify>{task.description}</Linkify>
+      </div>
 
       {/* Footer */}
       <div className="flex items-center justify-between ml-8 mt-3">
         <div className="inline-flex items-center gap-2 bg-bg-tertiary px-3 py-1.5 rounded-lg text-xs text-text-secondary">
-          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          <svg
+            className="w-3.5 h-3.5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
           </svg>
           {task.dueDate}
         </div>
 
         {/* Actions */}
-        <div 
+        <div
           className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity"
           onClick={(e) => e.stopPropagation()}
         >

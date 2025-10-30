@@ -3,7 +3,7 @@ import type { TaskCardType } from "@/entities/task";
 import { TaskCard } from "@/entities/task/ui/TaskCard";
 import { DeleteTaskButton } from "@/features/task/taskDelete";
 
-import EditTaskButton from "@/features/task/taskEdit/ui/EditTaskButton";
+import { OpenEditTaskDrawerButton } from "@/features/task/taskEdit";
 
 interface TaskListProps {
   tasks: TaskCardType[];
@@ -28,7 +28,7 @@ export const TaskList = ({ tasks, variant = "active" }: TaskListProps) => {
             task={task}
             actions={
               <>
-                <EditTaskButton task={task} />
+                <OpenEditTaskDrawerButton task={task} />
 
                 <DeleteTaskButton taskId={task.id} />
               </>

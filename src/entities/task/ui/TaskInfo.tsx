@@ -1,3 +1,4 @@
+import Linkify from "linkify-react";
 import type { TaskCardType } from "../model/types";
 
 interface TaskInfoProps {
@@ -8,7 +9,7 @@ export const TaskInfo = ({ task }: TaskInfoProps) => {
   return (
     <div>
       <div className="text-text-secondary space-y-2">
-        <p>{task.description}</p>
+        <Linkify>{task.description}</Linkify>
         <p className="text-sm">Deadline: {task.dueDate}</p>
       </div>
     </div>
