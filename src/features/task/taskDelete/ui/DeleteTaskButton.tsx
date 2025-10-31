@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
 import { Button } from "@/shared/ui/button";
-import { ConfirmDialog } from "@/shared/ui/alertAction";
+import { ConfirmDialog } from "@/shared/ui";
 import { useDeleteTask } from "../model/useDeleteTask";
 
 interface DeleteTaskButtonProps {

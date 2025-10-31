@@ -12,6 +12,7 @@ import { TaskInfo } from "@/entities/task/ui/TaskInfo";
 
 import { DeleteTaskButton } from "@/features/task/taskDelete"; // ✅
 import { useTaskDrawerStore } from "@/entities/task";
+import { EditTaskForm } from "@/features/task/taskEdit/ui/EditTaskForm";
 
 export const TaskDrawer = () => {
   const {
@@ -76,7 +77,7 @@ export const TaskDrawer = () => {
                 <TaskInfo task={task} />
               ) : (
                 <div className="text-text-secondary italic">
-                  Edit form placeholder
+                  <EditTaskForm />
                 </div>
               )}
             </div>

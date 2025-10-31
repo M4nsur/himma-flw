@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
-} from "../../lib/shadcn";
+} from "../lib/shadcn";
 import { Button } from "@/shared/ui/button";
 import { cn } from "@/shared/lib/classnames";
 import { ChevronDown } from "lucide-react";
@@ -30,7 +30,7 @@ interface DropdownRadioRHFProps<TFieldValues extends FieldValues>
   defaultValue?: string;
 }
 
-export function DropdownRadio<T extends FieldValues>({
+export function DropdownSelect<T extends FieldValues>({
   name,
   control,
   options,

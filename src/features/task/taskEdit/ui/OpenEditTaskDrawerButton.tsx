@@ -1,5 +1,5 @@
 import { Button } from "@/shared/ui/button";
-import { Icon } from "@/shared/ui/icon/Icon";
+import { Icon } from "@/shared/ui/Icon";
 import { useTaskDrawerStore, type TaskCardType } from "@/entities/task";
 
 interface EditTaskButtonProps {

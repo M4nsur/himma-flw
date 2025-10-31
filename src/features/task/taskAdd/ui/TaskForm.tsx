@@ -1,17 +1,22 @@
-import { FormField } from "@/shared/ui/form-field";
+import { FormField } from "@/shared/ui/formField";
 import { Input } from "@/shared/ui/input";
 import { Controller, useForm } from "react-hook-form";
-import { DropdownRadio } from "@/shared/ui/dropdown/dropdown-radio";
-import { DEFAULT_TASK_VALUES, PRIORITY_OPTIONS } from "../model/constants";
+import { DropdownSelect } from "@/shared/ui/";
+import {
+  CATEGORY_OPTIONS,
+  DEFAULT_TASK_VALUES,
+  PRIORITY_OPTIONS,
+  STATUS_OPTIONS,
+} from "../model/constants";
 import { Textarea } from "@/shared/ui/textarea";
-import { DataPicker } from "@/shared/ui/data-picker";
+import { DataPicker } from "@/shared/ui/dataPicker";
 import { Button } from "@/shared/ui/button";
-import { addTaskSchema, type AddTaskFormValues } from "../model/schema";
+import { taskFormSchema, type TaskFormTypes } from "@/shared/lib/validation/";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export const TaskForm = () => {
-  const form = useForm<AddTaskFormValues>({
-    resolver: zodResolver(addTaskSchema),
+  const form = useForm<TaskFormTypes>({
+    resolver: zodResolver(taskFormSchema),
     defaultValues: DEFAULT_TASK_VALUES,
   });
 
@@ -21,15 +26,13 @@ export const TaskForm = () => {
     formState: { errors },
   } = form;
 
-  const onSubmit = (data: AddTaskFormValues) => {
+  const onSubmit = (data: TaskFormTypes) => {
     console.log("its work", data);
   };
 
-
-
   return (
     <form
-      onSubmit={form.handleSubmit(onSubmit, onError)}
+      onSubmit={form.handleSubmit(onSubmit)}
       className="flex flex-col gap-5"
     >
       <FormField label="Task title" error={errors.title?.message}>
@@ -48,21 +51,28 @@ export const TaskForm = () => {
         />
       </FormField>
 
+      <FormField label="Category" error={errors.priority?.message}>
+        <DropdownSelect
+          name="priority"
+          control={control}
+          options={CATEGORY_OPTIONS}
+          className="w-full bg-bg-tertiary border-bg-tertiary hover:bg-bg-button-hover transition-colors"
+        />
+      </FormField>
       <div className="grid grid-cols-2 gap-4">
-        <FormField label="Category" error={errors.category?.message}>
-          <DropdownRadio
-            name="category"
-            control={control}
-            options={[{ label: "test", value: "tests" }]}
-            className="w-full bg-bg-tertiary border-bg-tertiary hover:bg-bg-button-hover transition-colors"
-          />
-        </FormField>
-
         <FormField label="Priority" error={errors.priority?.message}>
-          <DropdownRadio
+          <DropdownSelect
             name="priority"
             control={control}
             options={PRIORITY_OPTIONS}
+            className="w-full bg-bg-tertiary border-bg-tertiary hover:bg-bg-button-hover transition-colors"
+          />
+        </FormField>
+        <FormField label="Status" error={errors.priority?.message}>
+          <DropdownSelect
+            name="priority"
+            control={control}
+            options={STATUS_OPTIONS}
             className="w-full bg-bg-tertiary border-bg-tertiary hover:bg-bg-button-hover transition-colors"
           />
         </FormField>

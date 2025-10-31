@@ -1,4 +1,4 @@
-import type { AddTaskFormValues } from "./schema";
+import type { TaskFormTypes } from "@/shared/lib/validation";
 
 export const PRIORITY_OPTIONS = [
   { label: "Low", value: "low" },
@@ -13,9 +13,16 @@ export const STATUS_OPTIONS = [
   { label: "Cancelled", value: "cancelled" },
 ];
 
-export const DEFAULT_TASK_VALUES: Partial<AddTaskFormValues> = {
+export const CATEGORY_OPTIONS = [
+  { label: "Work", value: "work" },
+  { label: "Personal", value: "personal" },
+  { label: "Health", value: "health" },
+  { label: "Learning", value: "learning" },
+];
+
+
+export const DEFAULT_TASK_VALUES: Partial<TaskFormTypes> = {
   priority: "medium",
-  status: 'pending',
+  status: "pending",
   pomodoro: 0,
 };
-
