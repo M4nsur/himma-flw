@@ -1,4 +1,4 @@
-import { PageHeader } from "@/shared/ui/page-header";
+import { PageHeader } from "@/shared/ui/pageHeader";
 import { AddTaskAction } from "@/features/task/taskAdd";
 import { TaskList } from "@/widgets/taskList";
 import { tasks } from "@/shared/values";

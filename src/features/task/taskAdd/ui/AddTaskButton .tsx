@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/shared/ui/button";
-import { BaseModal } from "@/shared/ui/modal";
+import { BaseModal } from "@/shared/ui";
 import { TaskForm } from "./TaskForm";
 
 export const AddTaskAction = () => {
