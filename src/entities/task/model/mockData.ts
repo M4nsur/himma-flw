@@ -12,7 +12,6 @@ export interface Task {
   status: TaskStatus;
   createdAt: string;
   updatedAt: string;
-  
 }
 
 export type TaskCardType = Task;
@@ -21,7 +20,7 @@ export interface TaskCardProps {
   task: TaskCardType;
   actions: React.ReactNode;
 }
-export const tasks: Task[] = [
+export const mockTaskDtos  : Task[] = [
   {
     id: "1",
     title: "Buy groceries",

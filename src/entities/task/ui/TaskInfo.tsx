@@ -10,7 +10,9 @@ export const TaskInfo = ({ task }: TaskInfoProps) => {
     <div>
       <div className="text-text-secondary space-y-2">
         <Linkify>{task.description}</Linkify>
-        <p className="text-sm">Deadline: {task.dueDate}</p>
+        <p>
+          {task.dueDate ? task.dueDate.toLocaleDateString() : "No due date"}
+        </p>
       </div>
     </div>
   );

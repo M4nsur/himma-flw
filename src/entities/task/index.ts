@@ -1,2 +1,4 @@
 export { useTaskDrawerStore } from "./model/useTaskDrawerStore";
-export type { TaskCardType } from "./model/types";
+
+export { TaskFormSchema, TaskDtoSchema } from "./model/schema";
+export type { Task, TaskFormTypes, TaskCardType } from "./model/types";

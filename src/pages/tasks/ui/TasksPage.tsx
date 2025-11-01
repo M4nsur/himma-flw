@@ -1,9 +1,10 @@
 import { PageHeader } from "@/shared/ui/pageHeader";
 import { AddTaskAction } from "@/features/task/taskAdd";
-import { TaskList } from "@/widgets/taskList";
-import { tasks } from "@/shared/values";
-
+import { fetchTasks } from "@/entities/task/api/tasksApi";
 import { TaskDrawer } from "@/widgets/taskDrawer";
+import { TaskList } from "@/widgets/taskList";
+
+const tasks = fetchTasks();
 
 export const TasksPage = () => {
   return (
@@ -11,7 +12,7 @@ export const TasksPage = () => {
       <PageHeader title="Tasks" action={<AddTaskAction />}></PageHeader>
       <div className="flex flex-col">
         <TaskList tasks={tasks} />
-        <TaskList variant="completed" tasks={tasks} />
+        <TaskList tasks={tasks} />
       </div>
       <TaskDrawer />
     </div>

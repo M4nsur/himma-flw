@@ -3,21 +3,20 @@ import { Input } from "@/shared/ui/input";
 import { Controller, useForm } from "react-hook-form";
 import { DropdownSelect } from "@/shared/ui/";
 import {
-  CATEGORY_OPTIONS,
-  DEFAULT_TASK_VALUES,
+  // CATEGORY_OPTIONS,
   PRIORITY_OPTIONS,
   STATUS_OPTIONS,
 } from "../model/constants";
 import { Textarea } from "@/shared/ui/textarea";
 import { DataPicker } from "@/shared/ui/dataPicker";
 import { Button } from "@/shared/ui/button";
-import { taskFormSchema, type TaskFormTypes } from "@/shared/lib/validation/";
+import { TaskFormSchema, type TaskFormTypes } from "@/entities/task";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 
 export const TaskForm = () => {
   const form = useForm<TaskFormTypes>({
-    resolver: zodResolver(taskFormSchema),
-    defaultValues: DEFAULT_TASK_VALUES,
+    resolver: zodResolver(TaskFormSchema),
   });
 
   const {
@@ -51,14 +50,14 @@ export const TaskForm = () => {
         />
       </FormField>
 
-      <FormField label="Category" error={errors.priority?.message}>
+      {/* <FormField label="Category" error={errors.priority?.message}>
         <DropdownSelect
           name="priority"
           control={control}
           options={CATEGORY_OPTIONS}
           className="w-full bg-bg-tertiary border-bg-tertiary hover:bg-bg-button-hover transition-colors"
         />
-      </FormField>
+      </FormField> */}
       <div className="grid grid-cols-2 gap-4">
         <FormField label="Priority" error={errors.priority?.message}>
           <DropdownSelect
@@ -70,7 +69,7 @@ export const TaskForm = () => {
         </FormField>
         <FormField label="Status" error={errors.priority?.message}>
           <DropdownSelect
-            name="priority"
+            name="status"
             control={control}
             options={STATUS_OPTIONS}
             className="w-full bg-bg-tertiary border-bg-tertiary hover:bg-bg-button-hover transition-colors"
