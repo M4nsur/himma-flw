@@ -23,12 +23,15 @@ export const TaskDrawer = () => {
     setMode,
   } = useTaskDrawerStore();
 
-  if (!isOpen || !task) return null;
 
   const tabs = [
     { value: "view" as const, label: "View" },
     { value: "edit" as const, label: "Edit" },
   ];
+
+  if (!isOpen || !task) {
+    return null;
+  }
 
   return (
     <>
@@ -71,7 +74,6 @@ export const TaskDrawer = () => {
               </Tabs>
             </DrawerHeader>
 
-            {/* Content */}
             <div className="flex-1 overflow-y-auto px-6 py-6">
               {mode === "view" ? (
                 <TaskInfo task={task} />

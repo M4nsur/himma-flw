@@ -1,4 +1,4 @@
-import type { TaskFormTypes } from "@/shared/lib/validation";
+import type { TaskFormTypes } from "@/shared/lib/validation/task";
 
 export const PRIORITY_OPTIONS = [
   { label: "Low", value: "low" },
@@ -19,7 +19,6 @@ export const CATEGORY_OPTIONS = [
   { label: "Health", value: "health" },
   { label: "Learning", value: "learning" },
 ];
-
 
 export const DEFAULT_TASK_VALUES: Partial<TaskFormTypes> = {
   priority: "medium",

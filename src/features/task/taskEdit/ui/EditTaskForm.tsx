@@ -4,24 +4,24 @@ import { Input } from "@/shared/ui/input";
 import { Controller, useForm } from "react-hook-form";
 import { DropdownSelect } from "@/shared/ui/";
 import {
-  CATEGORY_OPTIONS,
+  // CATEGORY_OPTIONS,
+  DEFAULT_TASK_VALUES,
   PRIORITY_OPTIONS,
   STATUS_OPTIONS,
 } from "@/features/task/taskAdd/model/constants";
 import { Textarea } from "@/shared/ui/textarea";
 import { DataPicker } from "@/shared/ui/dataPicker";
 import { Button } from "@/shared/ui/button";
-import { taskFormSchema, type TaskFormTypes } from "@/shared/lib/validation/";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { useTaskDrawerStore } from "@/entities/task";
+import { TaskFormSchema, type TaskFormTypes } from "@/entities/task";
 
 export const EditTaskForm = () => {
   const { data: task, closeDrawer } = useTaskDrawerStore();
 
   const form = useForm<TaskFormTypes>({
-    resolver: zodResolver(taskFormSchema),
-    defaultValues: task,
+    resolver: zodResolver(TaskFormSchema),
+    defaultValues: task || DEFAULT_TASK_VALUES,
   });
 
   const {
@@ -61,14 +61,14 @@ export const EditTaskForm = () => {
         />
       </FormField>
 
-      <FormField label="Category" error={errors.category?.message}>
+      {/* <FormField label="Category" error={errors.category?.message}>
         <DropdownSelect
           name="category"
           control={control}
           options={CATEGORY_OPTIONS}
           className="w-full bg-bg-tertiary border-bg-tertiary hover:bg-bg-button-hover transition-colors"
         />
-      </FormField>
+      </FormField> */}
 
       <div className="grid grid-cols-2 gap-4">
         <FormField label="Priority" error={errors.priority?.message}>
