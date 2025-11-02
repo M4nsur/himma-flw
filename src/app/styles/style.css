@@ -29,6 +29,12 @@
   --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.5);
 
   --font-sans: "Roboto Mono", monospace;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
 }
 
 :root {
@@ -72,6 +78,7 @@ html.dark {
 
   body {
     @apply bg-background font-sans text-foreground;
+    font-size: 14px;
   }
 
   button {
