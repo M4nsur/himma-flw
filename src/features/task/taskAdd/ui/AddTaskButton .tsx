@@ -8,7 +8,11 @@ export const AddTaskAction = () => {
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} className="bg-bg-tertiary">
+      <Button
+        onClick={() => setOpen(true)}
+        className="bg-bg-tertiary"
+        size={"sm"}
+      >
         Add task
       </Button>
 

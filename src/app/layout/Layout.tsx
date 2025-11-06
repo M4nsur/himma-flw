@@ -7,7 +7,7 @@ export const Layout = () => {
       <div className="flex flex-col flex-1 w-full">
         <Header />
 
-        <main className="flex-1 bg-bg-secondary p-6 md:p-8">
+        <main className="flex-1 bg-bg-secondary px-2 sm:p-3 md:p-4">
           <Outlet />
         </main>
       </div>
