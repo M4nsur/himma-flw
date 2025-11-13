@@ -12,7 +12,7 @@ export const TaskCard = React.memo(({ task, actions }: TaskCardProps) => {
       className="group  relative bg-bg-secondary border border-bg-tertiary rounded-xl p-5 hover:border-accent/50 transition-all duration-200 cursor-pointer text-sm  lg:w-[360px] 2xl:w-[400px]  h-50 flex flex-col "
       onClick={() => openDrawer(task, "view")}
     >
-      <div className="flex items-start gap-3 mb-3 lg:w-30">
+      <div className="flex items-start gap-3 mb-3">
         <Checkbox
           className="mt-0.5 size-5 shrink-0"
           onClick={(e) => e.stopPropagation()}
