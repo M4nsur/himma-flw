@@ -3,8 +3,8 @@ import { MobileMenu } from "./MobileMenu";
 
 export const Header = () => {
   return (
-    <header className="top-0 z-50  bg-bg-primary relative lg:sticky">
-      <div className="lg:mx-auto py-4">
+    <header className="sticky top-0 z-50 bg-bg-primary">
+      <div className="lg:mx-auto lg:py-4">
         <MobileMenu />
         <Navigation />
       </div>

@@ -19,6 +19,6 @@ export const TaskDtoSchema = z.object({
   priority: z.enum(["low", "medium", "high"]),
   pomodoro: z.number().optional(),
   status: z.enum(["pending", "in_progress", "completed", "cancelled"]),
-  createdAt: z.string(), // ISO строка
+  createdAt: z.string(),
   completedAt: z.string().optional(),
 });

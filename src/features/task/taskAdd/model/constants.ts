@@ -1,4 +1,4 @@
-import type { TaskFormTypes } from "@/shared/lib/validation/task";
+import { type TaskFormTypes } from "@/entities/task";
 
 export const PRIORITY_OPTIONS = [
   { label: "Low", value: "low" },
