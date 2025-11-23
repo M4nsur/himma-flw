@@ -21,7 +21,7 @@ export const MobileMenu = () => {
       </button>
 
       {isOpen && (
-        <nav className="fixed inset-0 bg-bg-primary z-40 pt-16 px-2">
+        <nav className="fixed inset-0  z-40 pt-16 px-2">
           <ul className="flex flex-col py-4">
             {navigationLinks.map(({ to, label, end }) => (
               <li key={to}>

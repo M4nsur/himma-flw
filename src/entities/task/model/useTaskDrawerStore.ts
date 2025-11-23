@@ -1,4 +1,4 @@
-import type { TaskCardType } from "@/shared/lib/validation/taskSchema";
+import type { TaskCardType } from "@/entities/task/";
 import { createDrawerStore } from "@/shared/lib/drawerTaskManager";
 
 export const useTaskDrawerStore = createDrawerStore<TaskCardType>("taskDrawer");
