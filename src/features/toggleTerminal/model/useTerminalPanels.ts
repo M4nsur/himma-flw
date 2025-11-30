@@ -9,7 +9,6 @@ export const useTerminalPanels = () => {
   const terminalPanelRef = useRef<ImperativePanelHandle>(null);
 
   useEffect(() => {
-    // Небольшая задержка для инициализации панелей
     const timer = setTimeout(() => {
       if (isFullscreen) {
         mainPanelRef.current?.collapse();
